@@ -1,0 +1,17 @@
+*.png
+events.*
+*.csv
+*.txt
+__pycache__
+*.egg-info
+*.whl
+
+### macOS template
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+
+# luarocks build files
+*.tar.gz
