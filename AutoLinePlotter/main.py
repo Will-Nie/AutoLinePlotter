@@ -44,12 +44,11 @@ def plotter(
     plot_together_title: str = None
 ):
     '''
-    root: the location of file containing all algorithms. Each is a file containing\
-         five seeds of event file generated from tensorboard
-    titles: the titles to be plotted in each diagram
+    root: the location of the folder containing all algorithms data. Each is a folder containing a few seeds of event file generated from TensorBoard
+    titles: the titles to be plotted in each diagram; This has no effect in plot_together mode
     labels: the labels for each algorithm
-    x_axes: the x-axis for each diagram
-    y_axes: the y-axis for each diagram
+    x_axes: the x-axis for each diagram; This has no effect in plot_together mode
+    y_axes: the y-axis for each diagram; This has no effect in plot_together mode
     plot_together: whether to plot together or not
     plot_together_x_axis: if plot_together, indicates the x axis for the plot
     plot_together_y_axis: if plot_together, indicates the y axis for the plot
