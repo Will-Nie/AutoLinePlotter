@@ -56,6 +56,9 @@ In this case, ``root`` should be ``'User/files/pong'``; ``titles`` could be ``['
 four list will be of dimension two. For whatever one enters, the first element in all these four lists should point to the final graph of ``pong_c51`` and the 
 second element in all these four lists should point to the final graph of ``pong_dqn``.
 
+The only restriction in naming folders is for the folders containing events files. The format should be ``env_algo``. For instance, in the above case, the two folders are named
+``pong_c51`` and ``pong_dqn`` respectively. (there should not be any ``_`` within ``env`` or ``algo`` naming)
+
 If ``plot_together`` is enabled, these line plots will be plotted together. So, besides the above input, users should turn on ``plot_together `` and set 
 ``plot_together_x_axis ``, ``plot_together_y_axis`` and ``plot_together_title``. Notice that in this case, ``titles``, ``x_axes``, ``y_axes`` will have no effects. However,
 They should be implemented as if the user wants to plot with ``plot_together=False`` to avoid errors.
