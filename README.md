@@ -50,6 +50,7 @@ In this case, ``root`` should be ``'User/files/pong'``; ``titles`` could be ``['
 >      - events.out.tfevents.1632662517.pong-dqn-seed4
 
 > Funcion output 
+
 >![avatar](./diagrams/pong_c51.png)
 ![avatar](./diagrams/pong_dqn.png)
 
@@ -67,4 +68,5 @@ If ``plot_together`` is enabled, these line plots will be plotted together. So, 
 They should be implemented as if the user wants to plot with ``plot_together=False`` to avoid errors. If ``plot_together`` is enabled, the output for the above example is as follows:
 
 > Funcion output 
+
 > ![avatar](./diagrams/pong.png)
