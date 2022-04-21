@@ -51,8 +51,8 @@ In this case, ``root`` should be ``'User/files/pong'``; ``titles`` could be ``['
 
 > Funcion output 
 
->![avatar](./diagrams/pong_c51.png)
-![avatar](./diagrams/pong_dqn.png)
+> ![avatar](./diagrams/pong_c51.png)
+> ![avatar](./diagrams/pong_dqn.png)
 
 **Notice**
 
