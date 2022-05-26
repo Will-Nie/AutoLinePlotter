@@ -38,6 +38,7 @@ def plotter(
     labels: List[str],
     x_axes: List[str],
     y_axes: List[str],
+    max_x: int = None,
     plot_together: bool = False,
     plot_together_x_axis: str = None,
     plot_together_y_axis: str = None,
@@ -49,6 +50,7 @@ def plotter(
     labels: the labels for each algorithm
     x_axes: the x-axis for each diagram; This has no effect in plot_together mode
     y_axes: the y-axis for each diagram; This has no effect in plot_together mode
+    max_x: the maximum x in x-axis ones wants to plot
     plot_together: whether to plot together or not
     plot_together_x_axis: if plot_together, indicates the x axis for the plot
     plot_together_y_axis: if plot_together, indicates the y axis for the plot
@@ -89,20 +91,46 @@ def plotter(
                         raise Exception("{0} should not be in the directory: {1}".format(exp_file, exp_path))
                 dummy = [len(i) for i in reward_seeds]
                 max_steps = max([len(i) for i in reward_seeds])
-                index = dummy.index(max([len(i) for i in reward_seeds]))
-                result = []
-                for i, reward in enumerate(reward_seeds[index]):
-                    result.append(reward.step)
-                results['step'] = result
-                for j in range(len(reward_seeds)):
-                    reward_j = []
-                    for i, reward in enumerate(reward_seeds[j]):
-                        reward_j.append(reward.value)
-                    while i < max_steps - 1:
-                        reward_j.append(reward.value)
-                        i += 1
-                    i = 0
-                    results[j] = reward_j
+                index = dummy.index(max_steps)
+                if max_x is not None and max_x < reward_seeds[index][len(reward_seeds[index])-1].step:
+                    assert type(max_x) == int, 'max_x should be an integer'
+                    result = []
+                    for k in range(len(reward_seeds[index])):
+                        if reward_seeds[index][k].step <= max_x:
+                            result.append(reward_seeds[index][k].step)
+                        else:
+                            max_steps = k-1
+                            break
+                    results['step'] = result
+                    for j in range(len(reward_seeds)):
+                        max_steps_seed=len(reward_seeds[j])
+                        reward_j = []
+                        i = 0
+                        while i <= max_steps:
+                            if i <= max_steps_seed - 1:
+                                reward_j.append(reward_seeds[j][i].value)
+                                i += 1
+                            else:
+                                i = max_steps_seed - 1
+                                for _ in range(max_steps - max_steps_seed + 1):
+                                    reward_j.append(reward_seeds[j][i].value)
+                                break
+                        results[j] = reward_j
+                    
+                else:
+                    result = []
+                    for i, reward in enumerate(reward_seeds[index]):
+                        result.append(reward.step)
+                    results['step'] = result
+                    for j in range(len(reward_seeds)):
+                        reward_j = []
+                        for i, reward in enumerate(reward_seeds[j]):
+                            reward_j.append(reward.value)
+                        while i < max_steps - 1:
+                            reward_j.append(reward.value)
+                            i += 1
+                        i = 0
+                        results[j] = reward_j
             steps = results['step'] * (len(results) - 1)
             results.pop('step')
             value = []
